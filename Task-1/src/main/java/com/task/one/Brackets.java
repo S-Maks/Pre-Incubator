@@ -1,4 +1,4 @@
-package com.tast.one;
+package com.task.one;
 
 import lombok.Data;
 
