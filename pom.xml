@@ -13,6 +13,7 @@
         <module>Task-2</module>
         <module>Task-4</module>
         <module>Task-5</module>
+        <module>Task-6</module>
     </modules>
 
     <dependencies>
