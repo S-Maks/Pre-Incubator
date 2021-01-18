@@ -1,8 +1,8 @@
-package com.task.two;
+package com.task.three;
 
-import com.task.two.Animal.Cat;
-import com.task.two.Animal.Cow;
-import com.task.two.Animal.Dog;
+import com.task.three.Animal.Cat;
+import com.task.three.Animal.Cow;
+import com.task.three.Animal.Dog;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -12,11 +12,9 @@ import java.util.Scanner;
 @Data
 public class Printer {
     private Map<String, Object> map;
-    private Scanner scanner;
 
     Printer() {
         map = new HashMap<>();
-        scanner = new Scanner(System.in);
     }
 
     public void start() {
@@ -72,7 +70,7 @@ public class Printer {
             System.out.println(map.get(InputData.inputString()).toString());
         }catch (NullPointerException ex){
             System.out.println("Not found!");
-            ex.getMessage();
+            System.out.println(ex.getMessage());
         }
     }
 }

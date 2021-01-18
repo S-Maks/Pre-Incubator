@@ -3,31 +3,33 @@ package com.task.one;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 @Data
 public class Brackets {
     private List<Character> result;
+    private String str;
 
-    Brackets() {
+    Brackets(String s) {
+        str = s;
         result = new ArrayList<>();
     }
 
     public void start() {
         if (checkBrackets()) {
-            System.out.println("The brackets are placed correctly");
+            System.out.println(str + "\n" + "The brackets are placed correctly");
         } else {
             System.out.println("The brackets are placed incorrectly");
         }
     }
 
     private boolean checkBrackets() {
-        String str;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an array of parentheses");
-        str = scanner.nextLine();//reading a line from the console
-        char[] strArr = String.join("", str.split(",")).toCharArray();//split the string and convert it to an array of characters
+        char[] strArr = filterString();//split the string and convert it to an array of characters
+        if (strArr.length < 2) {
+            return false;
+        }
         for (char s : strArr) {
             if (s == '<' || s == '(' || s == '{' || s == '[') {
                 result.add(s);//add the opening bracket
@@ -75,5 +77,18 @@ public class Brackets {
                 }
         }
         return false;
+    }
+
+    private char[] filterString() {
+        StringBuilder resultString = new StringBuilder();
+        for (char s : String.join("", str.split(",")).toCharArray()) {
+            if (s == '<' || s == '('
+                    || s == '{' || s == '['
+                    || s == '>' || s == ')'
+                    || s == '}' || s == ']') {
+                resultString.append(s);
+            }
+        }
+        return String.valueOf(resultString).toCharArray();
     }
 }

@@ -1,17 +1,17 @@
-package com.task.four.animal;
+package com.task.three;
 
-import com.task.four.animal.model.Animal;
-import com.task.four.animal.model.Cat;
-import com.task.four.animal.model.Cow;
-import com.task.four.animal.model.Dog;
+import com.task.three.Animal.Cat;
+import com.task.three.Animal.Cow;
+import com.task.three.Animal.Dog;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+@Data
 public class Printer {
-    private Map<String, Animal> map;
-
+    private Map<String, Object> map;
     Printer() {
         map = new HashMap<>();
     }
@@ -66,14 +66,10 @@ public class Printer {
     private void findVoice() {
         System.out.print("Enter the name of the animal: ");
         try {
-            Printer.print(map.get(InputData.inputString()));
-        } catch (NullPointerException ex) {
+            System.out.println(map.get(InputData.inputString()).toString());
+        }catch (NullPointerException ex){
             System.out.println("Not found!");
             System.out.println(ex.getMessage());
         }
-    }
-
-    public static <T extends Animal> void print(T obj) {
-        System.out.println(obj.voice());
     }
 }

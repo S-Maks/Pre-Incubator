@@ -3,7 +3,9 @@ package com.task.fife.brackets;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class Brackets {
@@ -17,19 +19,23 @@ public class Brackets {
     }
 
     public void start() {
-            try {
-                if (checkBrackets()) {
-                    System.out.println("The brackets are placed correctly");
-                } else {
-                    throw new IncorrectBrackets();
-                }
-            }catch (IncorrectBrackets ex){
-                ex.printStackTrace();
+        try {
+            if (checkBrackets()) {
+                System.out.println(str + "\n" + "The brackets are placed correctly");
+            } else {
+                throw new IncorrectBrackets();
             }
+        } catch (IncorrectBrackets ex) {
+            System.out.println(str);
+            ex.printStackTrace();
+        }
     }
 
     private boolean checkBrackets() {
-        char[] strArr = String.join("", str.split(",")).toCharArray();//split the string and convert it to an array of characters
+        char[] strArr  = filterString();//split the string and convert it to an array of characters
+        if (strArr.length < 2) {
+            return false;
+        }
         for (char s : strArr) {
             if (s == '<' || s == '(' || s == '{' || s == '[') {
                 result.add(s);//add the opening bracket
@@ -77,5 +83,18 @@ public class Brackets {
                 }
         }
         return false;
+    }
+
+    private char[] filterString() {
+        StringBuilder resultString = new StringBuilder();
+        for (char s : String.join("", str.split(",")).toCharArray()) {
+            if (s == '<' || s == '('
+                    || s == '{' || s == '['
+                    || s == '>' || s == ')'
+                    || s == '}' || s == ']') {
+                resultString.append(s);
+            }
+        }
+        return String.valueOf(resultString).toCharArray();
     }
 }

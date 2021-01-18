@@ -1,20 +1,17 @@
-package com.task.two.Animal;
+package com.task.three.Animal;
 
 import lombok.Data;
 
 @Data
-public class Cat {
+public class Dog {
     private String name;
 
-    public Cat() {
-    }
-
-    public Cat(String name) {
+    public Dog(String name) {
         this.name = name;
     }
 
-    public String voice(){
-        return "Мур-мур";
+    public String voice() {
+        return "Гав-гав";
     }
 
     @Override
