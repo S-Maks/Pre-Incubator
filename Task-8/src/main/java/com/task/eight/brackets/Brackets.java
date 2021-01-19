@@ -1,5 +1,6 @@
-package com.task.seven.brackets;
+package com.task.eight.brackets;
 
+import com.task.eight.annotation.MyAnno;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -8,16 +9,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@MyAnno
 public class Brackets {
     private List<String> result;
 
-    private static String str;
+    private String str;
 
-    public Brackets(String s) {
-        str = s;
+    public Brackets(String str) {
+        this.str = str;
         result = new ArrayList<>();
     }
 
+    @MyAnno
     public void start() {
         try {
             if (checkBrackets()) {
