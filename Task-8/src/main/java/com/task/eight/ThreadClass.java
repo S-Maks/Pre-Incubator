@@ -1,15 +1,13 @@
 package com.task.eight;
 
-import com.task.eight.annotation.MyAnno;
-import com.task.eight.brackets.Brackets;
+import com.task.eight.model.Book;
+import com.task.eight.reflection.Application;
+import com.task.eight.reflection.Line;
+import com.task.eight.reflection.Text;
+import lombok.SneakyThrows;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.SQLOutput;
-import java.util.Arrays;
 
 public class ThreadClass extends Thread {
     private final static String FILE_NAME = "brackets.txt";
@@ -23,34 +21,21 @@ public class ThreadClass extends Thread {
         super.start();
     }
 
+    @SneakyThrows
     @Override
     public void run() {
-        try{
-            Class<?> cl1 = Class.forName("com.task.eight.brackets.Brackets");
-            if(cl1.isAnnotationPresent(MyAnno.class)){
-               Object ob = cl1.getConstructor(String.class).newInstance(this.readFromFile());
-                Method[] method = cl1.getMethods();
-                for (Method met: method) {
-                    if(met.isAnnotationPresent(MyAnno.class)){
-                        met.invoke(ob);
-                    }
-                }
-            }
-        }catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException ex){
-            System.out.println(Arrays.toString(ex.getStackTrace()));
-        } catch (NoSuchMethodException | InstantiationException e) {
-            e.printStackTrace();
-        }
-
-        //new Brackets(this.readFromFile()).start();
+        new Application(this.readFromFile()).start();
+        Book book = new Book();
+        Line.checkLine(book);
+        Text.checkText(book);
     }
 
-    private String readFromFile(){
+    private String readFromFile() {
         StringBuilder str = new StringBuilder();
-        try(FileInputStream fileInputStream = new FileInputStream(FILE_NAME)) {
+        try (FileInputStream fileInputStream = new FileInputStream(FILE_NAME)) {
             int i;
-            while((i = fileInputStream.read())!=-1){
-                str.append((char)i);
+            while ((i = fileInputStream.read()) != -1) {
+                str.append((char) i);
             }
         } catch (IOException e) {
             e.printStackTrace();
