@@ -22,12 +22,12 @@ public class ThreadClass extends Thread {
         new Brackets(this.readFromFile()).start();
     }
 
-    private String readFromFile(){
+    private String readFromFile() {
         StringBuilder str = new StringBuilder();
-        try(FileInputStream fileInputStream = new FileInputStream(FILE_NAME)) {
+        try (FileInputStream fileInputStream = new FileInputStream(FILE_NAME)) {
             int i;
-            while((i = fileInputStream.read())!=-1){
-                str.append((char)i);
+            while ((i = fileInputStream.read()) != -1) {
+                str.append((char) i);
             }
         } catch (IOException e) {
             e.printStackTrace();
