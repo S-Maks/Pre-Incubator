@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@Singleton
 public class BracketsImpl implements Brackets {
     private List<String> result;
     private String str;
@@ -22,7 +23,7 @@ public class BracketsImpl implements Brackets {
         this.str = str;
         try {
             if (checkBrackets()) {
-                System.out.println(str + "\n" + "The brackets are placed correctly");
+                System.out.println(str + "\n" + "The brackets are placed correctly\n");
             } else {
                 throw new IncorrectBrackets();
             }

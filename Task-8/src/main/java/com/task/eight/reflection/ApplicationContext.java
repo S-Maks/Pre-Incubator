@@ -6,15 +6,16 @@ import lombok.Setter;
 import lombok.Singular;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ApplicationContext {
     @Setter
     private ObjectFactory objectFactory;
-    private Map<Class, Object> cache = new ConcurrentHashMap<>();
+    private final Map<Class, Object> cache = new ConcurrentHashMap<>();
     @Getter
-    private Config config;
+    private final Config config;
 
     public ApplicationContext(Config config) {
         this.config = config;

@@ -8,8 +8,8 @@ import java.util.Set;
 
 public class JavaConfig implements Config {
     @Getter
-    private Reflections reflections;
-    private Map<Class,Class> ifcImplClass;
+    private final Reflections reflections;
+    private final Map<Class,Class> ifcImplClass;
 
     public JavaConfig(String packageScan,Map<Class,Class> ifcImplClass) {
         this.ifcImplClass = ifcImplClass;
