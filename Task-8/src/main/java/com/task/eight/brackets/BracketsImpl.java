@@ -1,5 +1,6 @@
 package com.task.eight.brackets;
 
+import com.task.eight.annotation.Singleton;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -7,22 +8,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.task.eight.annotation.BracketsAnnotation;
-
 @Data
-@BracketsAnnotation
 public class BracketsImpl implements Brackets {
     private List<String> result;
     private String str;
 
-    public BracketsImpl(String str) {
-        this.str = str;
+    public BracketsImpl() {
         result = new ArrayList<>();
     }
 
     @Override
-    @BracketsAnnotation
-    public void start() {
+    public void start(String str) {
+        this.str = str;
         try {
             if (checkBrackets()) {
                 System.out.println(str + "\n" + "The brackets are placed correctly");

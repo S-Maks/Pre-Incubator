@@ -4,6 +4,10 @@ import com.task.seven.brackets.Brackets;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class ThreadClass extends Thread {
     private final static String FILE_NAME = "brackets.txt";
@@ -19,6 +23,7 @@ public class ThreadClass extends Thread {
 
     @Override
     public void run() {
+        System.out.println(this.getName());
         new Brackets(this.readFromFile()).start();
     }
 

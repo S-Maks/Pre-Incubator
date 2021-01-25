@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class Brackets {
     private List<String> result;
 
-    private static String str;
+    private volatile String str;
 
     public Brackets(String s) {
         str = s;

@@ -1,19 +1,22 @@
 package com.task.eight;
 
-import com.task.eight.model.Book;
-import com.task.eight.reflection.Application;
-import com.task.eight.reflection.Line;
-import com.task.eight.reflection.Text;
+import com.task.eight.annotation.Autowired;
+import com.task.eight.brackets.Brackets;
+import com.task.eight.brackets.BracketsImpl;
+import com.task.eight.reflection.ObjectFactory;
 import lombok.SneakyThrows;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public class ThreadClass extends Thread {
     private final static String FILE_NAME = "brackets.txt";
 
-    public ThreadClass(String s) {
-        this.setName(s);
+    @Autowired
+    private Brackets brackets;
+
+    public ThreadClass() {
     }
 
     @Override
@@ -24,10 +27,7 @@ public class ThreadClass extends Thread {
     @SneakyThrows
     @Override
     public void run() {
-        new Application(this.readFromFile()).start();
-        Book book = new Book();
-        Line.checkLine(book);
-        Text.checkText(book);
+        brackets.start(this.readFromFile());
     }
 
     private String readFromFile() {

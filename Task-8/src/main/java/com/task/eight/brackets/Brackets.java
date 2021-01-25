@@ -1,5 +1,6 @@
 package com.task.eight.brackets;
 
+
 public interface Brackets {
-    void start();
+    void start(String str);
 }
