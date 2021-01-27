@@ -1,18 +1,12 @@
 package com.task.eight.reflection;
 
-import com.task.eight.Main;
-import com.task.eight.annotation.Autowired;
-import com.task.eight.brackets.Brackets;
-import lombok.Setter;
+import com.task.eight.reflection.configurator.ObjectConfigurator;
+import com.task.eight.reflection.configurator.ProxyConfigurator;
 import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ObjectFactory {
@@ -38,9 +32,9 @@ public class ObjectFactory {
         return t;
     }
 
-    private <T> T wrapWithProxyIfNeeded(Class<T> implClass, T t) {
+    private <T> T wrapWithProxyIfNeeded(Class<T> implClass, T t) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
         for (ProxyConfigurator proxyConfigurator : proxyConfigurators) {
-            t = (T) proxyConfigurator.replaceWithProxyIfNeeded(t, implClass);
+            t = (T) proxyConfigurator.replaceWithProxyIfNeeded(t, implClass, context);
         }
         return t;
     }

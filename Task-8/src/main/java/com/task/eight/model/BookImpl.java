@@ -1,22 +1,27 @@
 package com.task.eight.model;
 
+import com.task.eight.annotation.Autowired;
 import com.task.eight.annotation.Line;
 import com.task.eight.annotation.Text;
+import com.task.eight.brackets.Brackets;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Deprecated
 public class BookImpl implements Book{
     @Line
+    @Setter
     private String name;
 
+    @Autowired
+    private Page page;
+
     public BookImpl() {
-        name = "[3] - Wikipedia";
     }
 
     @Override
-    @Text
     public String someText() {
-        return "На половине перегона лес кончился, и с боков открылись елани (поля)... (Л. Толстой)";
+       return page.text();
     }
 }
